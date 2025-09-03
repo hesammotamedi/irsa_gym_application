@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:irsa_gym_application/widget/app_bar_mofateh.dart';
 import 'package:irsa_gym_application/widget/product_widget.dart';
 
-class HomeScreenMofateh extends StatelessWidget {
+class HomeScreenMofateh extends StatefulWidget {
   const HomeScreenMofateh({super.key});
 
+  @override
+  State<HomeScreenMofateh> createState() => _HomeScreenMofatehState();
+}
+
+class _HomeScreenMofatehState extends State<HomeScreenMofateh> {
+  late final myWidth = MediaQuery.sizeOf(context).width;
+  late final myHeight = MediaQuery.sizeOf(context).height;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +27,25 @@ class HomeScreenMofateh extends StatelessWidget {
                   Stack(
                     fit: StackFit.loose,
                     children: [
-                      Image.asset('assets/images/background.png'),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          width: myWidth,
+                          height: myHeight / 2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(23)),
+                          ),
+                          clipBehavior: Clip.hardEdge,
+                          child: Image.asset(
+                            'assets/images/background.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 50, right: 30),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
-
                           children: [
                             Text(
                               'باشگاه ورزشی ایرسا',
@@ -115,8 +135,6 @@ class HomeScreenMofateh extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               sliver: SliverToBoxAdapter(
                 child: Container(
-                  height: 1000,
-                  width: 50,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 0.5),
